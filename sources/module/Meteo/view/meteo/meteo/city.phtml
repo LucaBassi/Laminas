@@ -1,0 +1,52 @@
+<?php
+$title = 'Louc Meteo';
+$this->headTitle($title);
+?>
+<h1><?= $this->escapeHtml($title) ?></h1>
+<h2> Temps actuel à <?= $meteo->getCityInfo()->name ?> : <img src="<?= $meteo->getCurrentCondition()->icon_big ?>"></h2> 
+
+<table class="table">
+    <tr >
+        <th><h4>Heure</h4></th>
+        <th><h4>Condition</h4></th>
+        <th><h4>Temperature</h4></th>
+        <th><h4>Vent</h4></th>
+        <th><h4>Pluie</h4></th>
+    </tr>
+</thead>
+<tbody >
+
+    <tr>
+        <td>9h00</td>
+        <td><img src="<?= $meteo->getDayDetails()->hourly_data->{'9H00'}->ICON ?>"></td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'9H00'}->TMP2m ?> °C</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'9H00'}->WNDSPD10m ?> Km/H</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'9H00'}->APCPsfc ?> mm</td>
+    </tr>
+
+    <tr>
+        <td>12h00</td>
+        <td><img src="<?= $meteo->getDayDetails()->hourly_data->{'12H00'}->ICON ?>"></td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'12H00'}->TMP2m ?> °C</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'12H00'}->WNDSPD10m ?> Km/H</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'12H00'}->APCPsfc ?> mm</td>
+    </tr>
+
+    <tr>
+        <td>17h00</td>
+        <td><img src="<?= $meteo->getDayDetails()->hourly_data->{'17H00'}->ICON ?>"></td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'17H00'}->TMP2m ?> °C</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'17H00'}->WNDSPD10m ?> Km/H</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'17H00'}->APCPsfc ?> mm</td>
+    </tr>
+
+    <tr>
+        <td>21h00</td>
+        <td><img src="<?= $meteo->getDayDetails()->hourly_data->{'21H00'}->ICON ?>"></td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'21H00'}->TMP2m ?> °C</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'21H00'}->WNDSPD10m ?> Km/H</td>
+        <td ><?= $meteo->getDayDetails()->hourly_data->{'21H00'}->APCPsfc ?> mm</td>
+    </tr>
+
+</tbody>
+</table>
