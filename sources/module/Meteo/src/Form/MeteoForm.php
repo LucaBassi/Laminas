@@ -2,23 +2,34 @@
 
 namespace Meteo\Form;
 
+use Laminas\Form\Element\Hidden;
+use Laminas\Form\Element\Submit;
+use Laminas\Form\Element\Text;
 use Laminas\Form\Form;
 
 class MeteoForm extends Form
 {
-    public function init()
+    public function __construct($name = null)
     {
-        $this->add([
-            'name' => 'city',
-            'type' => MeteoFieldset::class,
-        ]);
+        // We will ignore the name provided to the constructor
+        parent::__construct('album');
 
         $this->add([
-            'type' => 'submit',
+            'name' => 'city',
+            'type' => Text::class,
+            'options' => [
+                'label' => 'City',
+            ],
+        ]);
+        $this->add([
             'name' => 'submit',
+            'type' => Submit::class,
             'attributes' => [
-                'value' => 'Insert new Post',
+                'value' => 'Go',
+                'id'    => 'submitbutton',
             ],
         ]);
     }
+   
+    
 }

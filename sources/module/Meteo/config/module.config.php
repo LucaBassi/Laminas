@@ -58,7 +58,7 @@ return [
         ],
         'factories' => [
             Model\MeteoRepository::class => InvokableFactory::class,
-      
+            
         ],
     ],
 ];
