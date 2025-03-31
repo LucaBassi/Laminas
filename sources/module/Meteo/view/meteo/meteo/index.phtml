@@ -71,8 +71,8 @@ $album->setAttribute('placeholder', 'Chercher une ville');
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
 
-#$form->setAttribute('action', $this->url('meteo', ['action' => 'city']));
-#$form->prepare();
+$form->setAttribute('action', $this->url('meteo', ['action' => 'city']));
+$form->prepare();
 
 echo $this->form()->openTag($form);
 ?>

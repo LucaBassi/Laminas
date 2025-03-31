@@ -5,21 +5,6 @@ namespace Meteo\Model;
 class MeteoRepository implements MeteoRepositoryInterface {
 
     private $data;
-
-    /**
-     * {@inheritDoc}
-     */
-    public function findAllPosts($city) {
-
-        $json = json_decode(file_get_contents('https://www.prevision-meteo.ch/services/json/'.$city));
-
-        return new Meteo(
-            $this->data['title'],
-            $this->data['sunriseTime'] = $json->city_info,
-            $this->data['id']
-        );
-    }
-
     /**
      * {@inheritDoc}
      */

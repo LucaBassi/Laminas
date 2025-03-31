@@ -30,20 +30,6 @@ return [
                     ],
                 ],
                 'may_terminate' => true,
-                'child_routes' => [
-                    'detail' => [
-                        'type' => Segment::class,
-                        'options' => [
-                            'route' => '/:city',
-                            'defaults' => [
-                                'action' => 'city',
-                            ],
-                        ],
-                        'constraints' => [
-                            'city' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                        ],
-                    ],
-                ],
             ],
         ],
     ],
