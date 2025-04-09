@@ -4,35 +4,15 @@ namespace Blog\Controller;
 
 use Blog\Model\PostRepositoryInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
-// Add the following import statement:
-use Laminas\View\Model\ViewModel;
 
-class ListController extends AbstractActionController
-{
-    /**
-     * @var PostRepositoryInterface
-     */
-    private $postRepository;
+namespace Blog\Controller;
 
-    public function __construct(PostRepositoryInterface $postRepository)
-    {
-        $this->postRepository = $postRepository;
+use Laminas\Mvc\Controller\AbstractActionController;
+
+class ListController extends AbstractActionController {
+
+    public function __construct() {
+        $youpi = "youpi";
+        echo $youpi;
     }
-
-    // Add the following method:
-    public function indexAction()
-    {
-        return new ViewModel([
-            'posts' => $this->postRepository->findAllPosts(),
-        ]);
-    }
-    
-public function detailAction()
-{
-    $id = $this->params()->fromRoute('id');
-
-    return new ViewModel([
-        'post' => $this->postRepository->findPost($id),
-    ]);
-}
 }

@@ -6,6 +6,7 @@ use Meteo\Model\MeteoRepositoryInterface;
 use Laminas\Mvc\Controller\AbstractActionController;
 // Add the following import statement:
 use Meteo\Form\MeteoForm;
+use Laminas\View\Model\ViewModel;
 
 class MeteoController extends AbstractActionController {
 
@@ -34,11 +35,9 @@ class MeteoController extends AbstractActionController {
             $country = $geo["geoplugin_countryName"];
             $city = $geo["geoplugin_city"];
         }
-
-        return [
+        return new ViewModel([
             'form' => $form,
             'meteo' => $this->MeteoRepository->findMeteo($city),
-        ];
-
+        ]);
     }
 }

@@ -51,11 +51,6 @@ $this->headTitle($title);
 
 </tbody>
 </table>
-<?php
-
-
-
-?>
 
 <?php
 // This provides a default CSS class and placeholder text for the title element:
@@ -64,9 +59,6 @@ $album->setAttribute('class', 'form-control');
 $album->setAttribute('placeholder', 'Chercher une ville');
 
 // This provides a default CSS class and placeholder text for the artist element:
-
-
-
 // This provides CSS classes for the submit button:
 $submit = $form->get('submit');
 $submit->setAttribute('class', 'btn btn-primary');
@@ -77,11 +69,12 @@ $form->prepare();
 echo $this->form()->openTag($form);
 ?>
 <?php // Wrap the elements in divs marked as form groups, and render the
-      // label, element, and errors separately within ?>
+// label, element, and errors separately within 
+?>
 <div class="form-group">
-    <?= $this->formLabel($album) ?>
-    <?= $this->formElement($album) ?>
-    <?= $this->formElementErrors()->render($album, ['class' => 'help-block']) ?>
+<?= $this->formLabel($album) ?>
+<?= $this->formElement($album) ?>
+<?= $this->formElementErrors()->render($album, ['class' => 'help-block']) ?>
 </div>
 
 <div class="form-group">
@@ -91,3 +84,33 @@ echo $this->form()->openTag($form);
 <?php
 echo $this->formSubmit($submit);
 echo $this->form()->closeTag();
+?>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+<div id="myPlot" ></div>
+
+<script>
+    const xArray = [0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 23];
+    const yArray = [<?= $meteo->getDayDetails()->hourly_data->{'0H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'2H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'4H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'6H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'8H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'10H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'12H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'14H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'16H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'18H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'20H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'22H00'}->TMP2m ?>, <?= $meteo->getDayDetails()->hourly_data->{'23H00'}->TMP2m ?>];
+
+// Define Data
+    const data = [{
+            x: xArray,
+            y: yArray,
+            mode: "line"
+        }];
+
+// Define Layout
+    const layout = {
+        xaxis: {range: [0, 23], title: "Heure"},
+        yaxis: {range: [<?= $meteo->getDayDetails()->tmin ?>-1, <?= $meteo->getDayDetails()->tmax ?>+1], title: "Temperature"},
+        title: "Graphique pour le <?= $meteo->getDayDetails()->day_short ?> <?= $meteo->getDayDetails()->date ?> à <?= $meteo->getCityInfo()->name ?>"
+    };
+
+// Display using Plotly
+    Plotly.newPlot("myPlot", data, layout);
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+<body>
+<canvas id="myChart" style="width:100%;max-width:600px"></canvas>

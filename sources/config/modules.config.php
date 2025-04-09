@@ -23,4 +23,5 @@ return [
     'LmcUser',
     'Blog',
     'Meteo',
+    'User',
 ];

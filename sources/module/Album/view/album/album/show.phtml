@@ -12,6 +12,9 @@ $this->headTitle($title);
 $userIdentity = $this->lmcUserIdentity();
 $mailTo = 'mailto:' . $userIdentity->getEmail();
 ?>
+<?php if ($this->lmcUserIdentity()->getTagline()): ?>
+<p><?=$this->lmcUserIdentity()->getTagline()?>.</p>
+<?php endif; ?>
 <p>
     <a href="<?= $this->url('album', ['action' => 'add']) ?>">Add new album</a>
 </p>

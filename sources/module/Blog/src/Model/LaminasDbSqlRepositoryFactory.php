@@ -2,6 +2,13 @@
 
 namespace Blog\Factory;
 
+use Laminas\Db\Adapter\AdapterInterface;
+use Laminas\Db\ResultSet\ResultSet;
+use Laminas\Db\TableGateway\TableGateway;
+use Laminas\ServiceManager\Factory\FactoryInterface;
+use Psr\Container\ContainerInterface;
+
+
 use Interop\Container\ContainerInterface;
 use Blog\Model\LaminasDbSqlRepository;
 use Laminas\Db\Adapter\AdapterInterface;

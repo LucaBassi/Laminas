@@ -35,7 +35,8 @@
             "Application\\": "module/Application/src/",
             "Album\\": "module/Album/src/",
             "Blog\\": "module/Blog/src/",
-            "Meteo\\": "module/Meteo/src/"
+            "Meteo\\": "module/Meteo/src/",
+            "User\\": "module/User/src/"
         }
     },
     "autoload-dev": {

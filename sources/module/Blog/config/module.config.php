@@ -2,25 +2,24 @@
 
 namespace Blog;
 
-
-use Laminas\ServiceManager\AbstractFactory\ReflectionBasedAbstractFactory;
-
-use Laminas\Router\Http\Segment;
+use Laminas\Router\Http\Literal;
 use Laminas\ServiceManager\Factory\InvokableFactory;
-
 
 return [
     'controllers' => [
         'factories' => [
-            Controller\ListController::class => ReflectionBasedAbstractFactory::class
+            Controller\ListController::class => Factory\ListControllerFactory::class,
         ],
     ],
-    
-    // The following section is new and should be added to your file:
+    // This lines opens the configuration for the RouteManager
     'router' => [
+        // Open configuration for all possible routes
         'routes' => [
+            // Define a new route called "blog"
             'blog' => [
-                'type'    => Segment::class,
+                // Define a "literal" route type:
+                'type' => Literal::class,
+                // Configure the route itself
                 'options' => [
                     // Listen to "/blog" as uri:
                     'route' => '/blog',
@@ -28,40 +27,15 @@ return [
                     // this route is matched
                     'defaults' => [
                         'controller' => Controller\ListController::class,
-                        'action'     => 'index',
-                    ],
-                ],
-            'may_terminate' => true,
-                'child_routes'  => [
-                    'detail' => [
-                        'type' => Segment::class,
-                        'options' => [
-                            'route'    => '/:id',
-                            'defaults' => [
-                                'action' => 'detail',
-                            ],
-                            'constraints' => [
-                                'id' => '[1-9]\d*',
-                            ],
-                        ],
+                        'action' => 'index',
                     ],
                 ],
             ],
-                ],
-            
-        ],
-  
-    'view_manager' => [
-        'template_path_stack' => [
-            'blog' => __DIR__ . '/../view',
         ],
     ],
-    'service_manager' => [
-        'aliases' => [
-            Model\PostRepositoryInterface::class => Model\PostRepository::class,
-        ],
-        'factories' => [
-            Model\PostRepository::class => InvokableFactory::class,
+    'view_manager' => [
+        'template_path_stack' => [
+            __DIR__ . '/../view',
         ],
     ],
 ];

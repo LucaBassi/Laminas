@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 31 mars 2025 à 21:05
+-- Généré le : mer. 09 avr. 2025 à 14:56
 -- Version du serveur :  10.4.17-MariaDB
 -- Version de PHP : 7.4.15
 
@@ -31,18 +31,21 @@ CREATE TABLE `album` (
   `id` int(11) NOT NULL,
   `artist` varchar(100) NOT NULL,
   `title` varchar(100) NOT NULL,
-  `outyear` int(11) NOT NULL
+  `outyear` int(11) DEFAULT NULL,
+  `user_email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `album`
 --
 
-INSERT INTO `album` (`id`, `artist`, `title`, `outyear`) VALUES
-(2, 'Adele', '22', 1993),
-(3, 'Bruce Springsteen', 'Wrecking Ball (Deluxe)', 1987),
-(4, 'Lana Del Rey', 'Born To Die', 1999),
-(5, 'Gotye', 'Making Mirrors', 2000);
+INSERT INTO `album` (`id`, `artist`, `title`, `outyear`, `user_email`) VALUES
+(2, 'Adele', '24', 1993, 'test@test.ch'),
+(3, 'Bruce Springsteen', 'Wrecking Ball (Deluxe)', 1987, NULL),
+(4, 'Lana Del Rey', 'Born To Die 2', 1999, NULL),
+(5, 'Gotye', 'Making Mirrors', 2000, NULL),
+(7, 'test', 'test', 2001, 'test@test.ch'),
+(8, 'test', 'test', 1992, 'test@test.ch');
 
 -- --------------------------------------------------------
 
@@ -79,15 +82,17 @@ CREATE TABLE `user` (
   `email` varchar(255) DEFAULT NULL,
   `display_name` varchar(50) DEFAULT NULL,
   `password` varchar(128) NOT NULL,
-  `state` smallint(6) DEFAULT NULL
+  `state` smallint(6) DEFAULT NULL,
+  `tagline` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Déchargement des données de la table `user`
 --
 
-INSERT INTO `user` (`user_id`, `username`, `email`, `display_name`, `password`, `state`) VALUES
-(1, NULL, 'test@test.cg', 'test', '$2y$14$CGkeMAgQVxOs1uUPVp9C8.qY2qdEAaDZsvHRkDdeKis9qrjV0BQBe', 99);
+INSERT INTO `user` (`user_id`, `username`, `email`, `display_name`, `password`, `state`, `tagline`) VALUES
+(1, NULL, 'test@test.ch', 'test', '$2y$14$CGkeMAgQVxOs1uUPVp9C8.qY2qdEAaDZsvHRkDdeKis9qrjV0BQBe', 99, 'I love the Beatles, youpi !'),
+(2, NULL, 'yolo@yolo.ch', 'yolo', '$2y$14$VFJVdNRMif32bhYGrOybReATCMa.FPdXshyBxPXKcrX4YBQgmSxdK', NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -121,7 +126,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT pour la table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT pour la table `posts`
@@ -133,7 +138,7 @@ ALTER TABLE `posts`
 -- AUTO_INCREMENT pour la table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
